@@ -12,15 +12,13 @@ RUN apt-get install -y \
     libmysqlclient-dev \
     python3-pip libpq-dev \
     python3-wheel apache2-dev \
-    gnuplot
+    gnuplot pkg-config
 
 RUN git clone https://github.com/bu-isciii/iskylims.git /srv/iskylims
 WORKDIR /srv/iskylims
-RUN git checkout develop
-
 RUN pip install -r conf/requirements.txt 
 
-RUN bash install.sh --install app --dev --conf conf/docker_install_settings.txt --docker
+RUN bash install.sh --install app --conf conf/docker_install_settings.txt --docker
 
 WORKDIR /opt/iskylims
 
